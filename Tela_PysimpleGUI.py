@@ -1,16 +1,21 @@
-import pyautogui
+
 import PySimpleGUI as sg
 
 sg.theme('DarkAmber')
 
 layout = [
-    [sg.Text('Tibia - Runar')],
-    [sg.Text('Qual magia deseja usar para Runar?'), sg.InputText()],
+    [sg.Text('Calendário')],
+    [sg.Text('Qual data deseja agendar?')],
+    [sg.In(key='-CAL-', enable_events=True, visible=False), sg.CalendarButton('Calendar', target='-CAL-', pad=None, font=('MS Sans Serif', 10, 'bold'), key='_CALENDAR_', format=('%d %B, %Y'))],
     [sg.Button('OK'), sg.Button('Cancel')]
 ]
 
-window = sg.Window('Tibia Rune Maker', layout)
+window = sg.Window('AC Nails', layout)
 
-event, values = window.read()
+while True:
+    event, values = window.read()
+    print('Agendamento concluído para,', '-CAL')
+    if event in 'Cancel':
+        break
 
-print('Boa escolha, lembre de ajustar o tempo de recarga da mana para,', values[0])
+window.close()
